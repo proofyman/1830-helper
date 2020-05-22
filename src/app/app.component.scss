@@ -1,0 +1,171 @@
+$gameBlue: #1A62AE;
+$gameFont: #BFA153;
+$bgPalleteColor: rgb(255, 248, 225);
+
+
+$colors: (
+  boston: #dffde2,
+  red: #ff958a,
+  yellow: #efed83,
+  blue: rgb(211, 244, 247),
+  green: #86ce78,
+  newYork: #a9a0a0,
+  orange: rgba(238, 202, 81, 0.94),
+  baltimor: #a8acef
+);
+
+.heading {
+  background: $gameBlue;
+  padding: 12px;
+  font-size: 30px;
+  color: $gameFont;
+  h1 {
+    margin: 0;
+  }
+}
+
+.pallete {
+  background: $bgPalleteColor;
+  padding: 16px;
+  box-shadow: black 1px 2px 5px;
+
+  &__heading {
+    margin: -16px -16px 8px -16px;
+    padding: 8px;
+    background: $gameBlue;
+    color: $gameFont;
+  }
+}
+
+.form-field {
+  margin-bottom: 8px;
+}
+
+:host {
+  display: block;
+}
+
+.content {
+  padding: 24px;
+}
+
+.state-pane {
+  display: flex;
+  align-items: baseline;
+}
+
+.money-pane {
+  min-width: 250px;
+  margin-left: 60px;
+}
+
+.players {
+}
+
+.shares {
+}
+
+table {
+  border-collapse: collapse;
+
+  input {
+    background: $bgPalleteColor;
+  }
+
+  .shares__player-name {
+    min-width: 150px;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.1;
+    background: #f5dfa8;
+  }
+}
+
+td, th {
+  padding: 0 8px;
+  border: solid 1px;
+}
+td:first-child {
+  padding: 8px;
+}
+
+td > input {
+  border: none;
+  font-size: 24px;
+  max-width: 100px;
+  min-width: auto;
+}
+
+h1,h2,h3 {
+  margin-top: 0;
+}
+
+h2 {
+  margin-bottom: 8px;
+}
+
+h3 {
+  margin-bottom: 4px;
+}
+
+@each $name, $color in $colors {
+  .bg-#{$name} {
+    background: $color;
+  }
+
+  .o__bg-#{$name} {
+    background: lighten($color, 0.5);
+  }
+}
+
+tr:hover {
+  background: rgba(0,0,0, 0.1);
+}
+
+option:nth-child(3)::after {
+  content: "1221" ;
+  vertical-align: middle;
+}
+
+.revenueCalculator {
+  background: $bgPalleteColor;
+  box-shadow: black 1px 2px 5px;
+  padding: 24px;
+}
+
+label {
+  font-weight: 700;
+  line-height: 24px;
+}
+
+select, input {
+  min-width: 200px;
+}
+
+button {
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.players_player-state-name {
+  font-size: 30px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.players_player-state-money {
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.players_player-state {
+  display: flex;
+  justify-content: space-between;
+}
+.bank {
+  margin-bottom: 20px;
+  .players_player-state-money,.players_player-state-name {
+    font-size: 45px;
+  }
+}
+
