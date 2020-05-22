@@ -11,7 +11,7 @@ export class AppComponent {
   calculateCompany: COMPANIES = COMPANIES.NEW_YORK;
   revenuePerShare: number = 0;
   isApplyReadyMode = false;
-  title = 'barons1830';
+  title = '1830-helper';
   COMPANIES = COMPANIES;
 
   constructor(public gameStateService: GameStateService) {

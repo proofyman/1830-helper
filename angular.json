@@ -1,9 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "barons1830": {
+    "1830-helper": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/barons1830",
+            "outputPath": "dist/1830-helper",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "barons1830:build"
+            "browserTarget": "1830-helper:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "barons1830:build:production"
+              "browserTarget": "1830-helper:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "barons1830:build"
+            "browserTarget": "1830-helper:build"
           }
         },
         "test": {
@@ -114,15 +114,20 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "barons1830:serve"
+            "devServerTarget": "1830-helper:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "barons1830:serve:production"
+              "devServerTarget": "1830-helper:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
-    }},
-  "defaultProject": "barons1830"
+    }
+  },
+  "defaultProject": "1830-helper"
 }
