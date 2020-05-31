@@ -3,6 +3,8 @@
 
 <div class="heading">
   <h1>1830 помощник</h1>
+
+  <mat-icon class="active-btn" (click)="resetGame()">refresh</mat-icon>
 </div>
 
 
@@ -17,46 +19,92 @@
         </div>
         <table>
           <tr>
-            <td>Игрок</td>
-            <td class="bg-boston">Бостон</td>
-            <td class="bg-baltimor">Балтимор</td>
-            <td class="bg-red">Красная</td>
-            <td class="bg-yellow">Желтая</td>
-            <td class="bg-blue">Голубая</td>
-            <td class="bg-green">Зеленая</td>
-            <td class="bg-newYork">Нью-йорк</td>
-            <td class="bg-orange">Оранжевая</td>
+            <td class="col-name">Игрок</td>
+            <td class="col-name bg-boston">Boston</td>
+            <td class="col-name bg-baltimor">Baltimor</td>
+            <td class="col-name bg-red">Canadian Pacific</td>
+            <td class="col-name bg-yellow">Erie</td>
+            <td class="col-name bg-blue">Chesapeake</td>
+            <td class="col-name bg-green">Pennsylvania</td>
+            <td class="col-name bg-newYork">NY Central</td>
+            <td class="col-name bg-orange">NY New Haven</td>
           </tr>
 
           <tr *ngFor="let player of gameStateService.players">
             <td class="shares__player-name">{{player.name}}</td>
-            <td><input [(ngModel)]="player.shares[COMPANIES.BOSTON]" type="number"></td>
-            <td><input [(ngModel)]="player.shares[COMPANIES.BALTIMOR]" type="number"></td>
-            <td><input [(ngModel)]="player.shares[COMPANIES.RED]" type="number"></td>
-            <td><input [(ngModel)]="player.shares[COMPANIES.YELLOW]" type="number"></td>
-            <td><input [(ngModel)]="player.shares[COMPANIES.BLUE]" type="number"></td>
-            <td><input [(ngModel)]="player.shares[COMPANIES.GREEN]" type="number"></td>
-            <td><input [(ngModel)]="player.shares[COMPANIES.NEW_YORK]" type="number"></td>
-            <td><input [(ngModel)]="player.shares[COMPANIES.ORANGE]" type="number"></td>
+            <td>
+              <input [(ngModel)]="player.shares[COMPANIES.BOSTON]" type="number">
+              <span class="mobile-heading bg-boston"></span>
+            </td>
+            <td>
+              <input [(ngModel)]="player.shares[COMPANIES.BALTIMOR]" type="number">
+              <span class="mobile-heading bg-baltimor"></span>
+            </td>
+            <td>
+              <input [(ngModel)]="player.shares[COMPANIES.CANADIAN]" type="number">
+              <span class="mobile-heading bg-red"></span>
+            </td>
+            <td>
+              <input [(ngModel)]="player.shares[COMPANIES.ERIE]" type="number">
+              <span class="mobile-heading bg-yellow"></span>
+            </td>
+            <td>
+              <input [(ngModel)]="player.shares[COMPANIES.CHESAPEAKE]" type="number">
+              <span class="mobile-heading bg-blue"></span>
+            </td>
+            <td>
+              <input [(ngModel)]="player.shares[COMPANIES.PENNSYLVANIA]" type="number">
+              <span class="mobile-heading bg-green"></span>
+            </td>
+            <td>
+              <input [(ngModel)]="player.shares[COMPANIES.NEW_YORK_CENTRAL]" type="number">
+              <span class="mobile-heading bg-newYork"></span>
+            </td>
+            <td>
+              <input [(ngModel)]="player.shares[COMPANIES.NEW_YORK_NEW_HAVEN]" type="number">
+              <span class="mobile-heading bg-orange"></span>
+            </td>
           </tr>
 
           <tr>
             <td class="shares__player-name">Банк</td>
-            <td><input [(ngModel)]="gameStateService.bankPoolShares[COMPANIES.BOSTON]" type="number"></td>
-            <td><input [(ngModel)]="gameStateService.bankPoolShares[COMPANIES.BALTIMOR]" type="number"></td>
-            <td><input [(ngModel)]="gameStateService.bankPoolShares[COMPANIES.RED]" type="number"></td>
-            <td><input [(ngModel)]="gameStateService.bankPoolShares[COMPANIES.YELLOW]" type="number"></td>
-            <td><input [(ngModel)]="gameStateService.bankPoolShares[COMPANIES.BLUE]" type="number"></td>
-            <td><input [(ngModel)]="gameStateService.bankPoolShares[COMPANIES.GREEN]" type="number"></td>
-            <td><input [(ngModel)]="gameStateService.bankPoolShares[COMPANIES.NEW_YORK]" type="number"></td>
-            <td><input [(ngModel)]="gameStateService.bankPoolShares[COMPANIES.ORANGE]" type="number"></td>
+            <td>
+              <input [(ngModel)]="gameStateService.bankPoolShares[COMPANIES.BOSTON]" type="number">
+              <span class="mobile-heading bg-boston"></span>
+            </td>
+            <td>
+              <input [(ngModel)]="gameStateService.bankPoolShares[COMPANIES.BALTIMOR]" type="number">
+              <span class="mobile-heading bg-baltimor"></span>
+            </td>
+            <td>
+              <input [(ngModel)]="gameStateService.bankPoolShares[COMPANIES.CANADIAN]" type="number">
+              <span class="mobile-heading bg-red"></span>
+            </td>
+            <td>
+              <input [(ngModel)]="gameStateService.bankPoolShares[COMPANIES.ERIE]" type="number">
+              <span class="mobile-heading bg-yellow"></span>
+            </td>
+            <td>
+              <input [(ngModel)]="gameStateService.bankPoolShares[COMPANIES.CHESAPEAKE]" type="number">
+              <span class="mobile-heading bg-blue"></span>
+            </td>
+            <td>
+              <input [(ngModel)]="gameStateService.bankPoolShares[COMPANIES.PENNSYLVANIA]" type="number">
+              <span class="mobile-heading bg-green"></span>
+            </td>
+            <td>
+              <input [(ngModel)]="gameStateService.bankPoolShares[COMPANIES.NEW_YORK_CENTRAL]" type="number">
+              <span class="mobile-heading bg-newYork"></span>
+            </td>
+            <td>
+              <input [(ngModel)]="gameStateService.bankPoolShares[COMPANIES.NEW_YORK_NEW_HAVEN]" type="number">
+              <span class="mobile-heading bg-orange"></span>
+            </td>
           </tr>
         </table>
       </div>
-      <br>
-      <br>
 
-      <div class="pallete">
+      <div class="pallete revenueCalculator">
         <div class="pallete__heading">
           <h2>Выплата дивидендов</h2>
         </div>
@@ -64,15 +112,17 @@
         <div class="form-field">
           <label>Выберите компанию:</label>
           <br>
-          <select [(ngModel)]="calculateCompany">
-            <option class="o__bg-boston" [value]="COMPANIES.BOSTON">Бостон</option>
-            <option class="o__bg-baltimor" [value]="COMPANIES.BALTIMOR">Балтимор</option>
-            <option class="o__bg-red" [value]="COMPANIES.RED">Красная</option>
-            <option class="o__bg-yellow" [value]="COMPANIES.YELLOW">Желтая</option>
-            <option class="o__bg-blue" [value]="COMPANIES.BLUE">Голубая</option>
-            <option class="o__bg-green" [value]="COMPANIES.GREEN">Зеленая</option>
-            <option class="o__bg-newYork" [value]="COMPANIES.NEW_YORK">Нью-йорк</option>
-            <option class="o__bg-orange" [value]="COMPANIES.ORANGE">Оранжевая</option>
+          <select
+            [ngClass]="selectedValueColor"
+            [(ngModel)]="calculateCompany">
+            <option class="o__bg-boston" [ngValue]="COMPANIES.BOSTON">Boston</option>
+            <option class="o__bg-baltimor" [ngValue]="COMPANIES.BALTIMOR">Baltimor</option>
+            <option class="o__bg-red" [ngValue]="COMPANIES.CANADIAN">Canadian Pacific</option>
+            <option class="o__bg-yellow" [ngValue]="COMPANIES.ERIE">Erie</option>
+            <option class="o__bg-blue" [ngValue]="COMPANIES.CHESAPEAKE">Chesapeake</option>
+            <option class="o__bg-green" [ngValue]="COMPANIES.PENNSYLVANIA">Pennsylvania</option>
+            <option class="o__bg-newYork" [ngValue]="COMPANIES.NEW_YORK_CENTRAL">NY Central</option>
+            <option class="o__bg-orange" [ngValue]="COMPANIES.NEW_YORK_NEW_HAVEN">NY New Haven</option>
           </select>
         </div>
 
@@ -85,8 +135,8 @@
             placeholder="Введите сумму за акцию" type="number"/>
 
         </div>
-        <button type="button" (click)="calculateRevenues(calculateCompany, revenuePerShare)">Рассчитать дивиденды</button>
-        <button type="button" (click)="calculateRevenues(calculateCompany, revenuePerShare, true)">Рассчитать сохранение дохода</button>
+        <button type="button" (click)="calculateRevenues(calculateCompany, revenuePerShare)">Дивиденды</button>
+        <button type="button" (click)="calculateRevenues(calculateCompany, revenuePerShare, true)">В компанию!</button>
 
         <ng-container *ngIf="isApplyReadyMode">
           <ul >
@@ -104,7 +154,7 @@
 
     <div class="pallete money-pane">
       <div class="pallete__heading">
-        <h2>Деньги</h2>
+        <h2>Деньги</h2> <mat-icon (click)="openEditMoney()" class="active-btn">edit</mat-icon>
       </div>
       <div>
         <div

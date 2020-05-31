@@ -1,25 +1,31 @@
 import { Injectable } from '@angular/core';
 
+interface SerializedState {
+  bankPool: number;
+  bankShares: any;
+  userInfo: {name: string, money: number, shares: any}[];
+}
+
 export enum COMPANIES {
   BOSTON,
   BALTIMOR,
-  RED,
-  YELLOW,
-  BLUE,
-  GREEN,
-  NEW_YORK,
-  ORANGE
+  CANADIAN,
+  ERIE,
+  CHESAPEAKE,
+  PENNSYLVANIA,
+  NEW_YORK_CENTRAL,
+  NEW_YORK_NEW_HAVEN
 }
 
 const defaultShares = {
   [COMPANIES.BOSTON]: 0,
   [COMPANIES.BALTIMOR]: 0,
-  [COMPANIES.RED]: 0,
-  [COMPANIES.YELLOW]: 0,
-  [COMPANIES.BLUE]: 0,
-  [COMPANIES.GREEN]: 0,
-  [COMPANIES.NEW_YORK]: 0,
-  [COMPANIES.ORANGE]: 0
+  [COMPANIES.CANADIAN]: 0,
+  [COMPANIES.ERIE]: 0,
+  [COMPANIES.CHESAPEAKE]: 0,
+  [COMPANIES.PENNSYLVANIA]: 0,
+  [COMPANIES.NEW_YORK_CENTRAL]: 0,
+  [COMPANIES.NEW_YORK_NEW_HAVEN]: 0
 };
 
 class PlayerState {
@@ -42,6 +48,7 @@ class PlayerState {
   providedIn: 'root'
 })
 export class GameStateService {
+  bankPoolTotal = 12000;
   bankPoolShares = {...defaultShares};
   bankPool = 0;
   players: PlayerState[] = [];
@@ -49,13 +56,22 @@ export class GameStateService {
   constructor() {
   }
 
+  reset() {
+    this.players = [];
+    this.bankPool = 0;
+    this.bankPoolShares = {...defaultShares};
+  }
+
   initPlayer(name, startMoney = 0, shares?: any) {
     this.players.push(
       new PlayerState(name, startMoney, shares)
     );
+
+    this.bankPool -= startMoney;
   }
 
   setBankPool(amount) {
+    this.bankPoolTotal = amount;
     this.bankPool = amount;
   }
 
@@ -83,5 +99,34 @@ export class GameStateService {
       playersRevenue,
       companyRevenue
     };
+  }
+
+  serialize(): SerializedState {
+    let bankShares = this.bankPoolShares;
+    let bankPool = this.bankPool;
+    let userInfo = this.players.map(p => ({
+      money: p.money,
+      name: p.name,
+      shares: p.shares
+    }));
+
+    return {
+      bankShares,
+      bankPool,
+      userInfo
+    };
+  }
+
+  applySerialized(data: SerializedState) {
+    data.userInfo.forEach(info => {
+      this.initPlayer(
+        info.name,
+        info.money,
+        info.shares
+      );
+    });
+    // порядок важен, т.к. инит игрока забирает деньги из пула
+    this.setBankPool(data.bankPool);
+    this.bankPoolShares = data.bankShares;
   }
 }

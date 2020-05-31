@@ -3,3 +3,321 @@ body {
   margin: 0;
   background: rgba(221, 196, 116, 0.8);
 }
+
+.bg-white {
+  background: white;
+}
+
+$mobile-width: 950px;
+$desktopWidth: 1550px;
+
+@mixin mobile {
+  @media (max-width: #{$mobile-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (max-width: #{$desktopWidth - 1px}) {
+    @content;
+  }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+$gameBlue: #1A62AE;
+$gameFont: #BFA153;
+$bgPalleteColor: rgb(255, 248, 225);
+
+
+$colors: (
+  boston: #bbd49c,
+  red: #ff705c,
+  yellow: #efed83,
+  blue: rgb(211, 244, 247),
+  green: #49b04c,
+  newYork: #a9a0a0,
+  orange: rgba(238, 163, 83, 0.94),
+  baltimor: #a0bcef
+);
+
+.heading {
+  background: $gameBlue;
+  padding: 12px;
+  font-size: 30px;
+  display: flex;
+  justify-content: space-between;
+  color: $gameFont;
+
+  @include mobile() {
+    font-size: 20px;
+  }
+  h1 {
+    margin: 0;
+  }
+}
+
+.pallete {
+  background: $bgPalleteColor;
+  padding: 16px;
+  box-shadow: black 1px 2px 5px;
+
+  margin-bottom: 16px;
+
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+    margin: -16px -16px 8px -16px;
+    padding: 8px;
+    background: $gameBlue;
+    color: $gameFont;
+  }
+}
+
+
+:host {
+  display: block;
+}
+
+.content {
+  padding: 24px;
+}
+
+.state-pane {
+  display: flex;
+  align-items: baseline;
+  @include laptop() {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+.money-pane {
+  min-width: 300px;
+  margin-left: 60px;
+  @include mobile() {
+    min-width: calc(100% - 32px);
+    margin-left: 0;
+  }
+  @include laptop() {
+    min-width: calc(100% - 32px);
+    margin-left: 0;
+  }
+}
+
+.players {
+}
+
+.shares {
+}
+
+table {
+  border-collapse: collapse;
+
+  input {
+    background: $bgPalleteColor;
+  }
+
+  .shares__player-name {
+    min-width: 150px;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.1;
+    background: #f5dfa8;
+  }
+}
+
+td, th {
+  padding: 0 8px;
+  height: 40px;
+  border: solid 1px;
+}
+td:first-child {
+  padding: 8px;
+}
+
+td > input {
+  border: solid 1px $gameFont;
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 24px;
+  max-width: 100px;
+  min-width: auto;
+}
+
+h1,h2,h3 {
+  margin: 0;
+}
+
+@each $name, $color in $colors {
+  .bg-#{'' + $name} {
+    background: $color;
+  }
+
+  .bg-g-#{'' + $name} {
+    background: linear-gradient(90deg, white 80%, $color 100%);
+  }
+
+  .o__bg-#{'' + $name} {
+    background: lighten($color, 0.5);
+  }
+}
+
+tr:hover:not(:first-child) {
+  box-shadow: inset black 1px 1px 4px;
+}
+
+.revenueCalculator {
+  order: 3;
+}
+
+
+.form-field {
+  margin-bottom: 16px;
+}
+label {
+  font-weight: 700;
+  line-height: 24px;
+}
+
+select, input {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 200px;
+  border: solid 1px;
+  padding: 8px;
+  border-radius: 2px;
+}
+
+button {
+  display: inline-block;
+  min-width: 200px;
+  @include mobile() {
+    width: 100%;
+    display: block;
+  }
+  margin-right: 4px;
+  background: $gameBlue;
+  color: $gameFont;
+  border: solid 1px black;
+  font-weight: 800;
+  padding: 8px;
+
+  &:hover:not(:disabled) {
+    cursor: pointer;
+    background: darken($gameBlue, 5);
+  }
+
+  &:disabled {
+    cursor: auto;
+    opacity: 0.7;
+  }
+}
+
+@include mobile() {
+  button + button {
+    margin-top: 8px;
+  }
+}
+body {
+  --money-font-size: 30px;
+  @include mobile() {
+    --money-font-size: 20px;
+  }
+}
+
+.players_player-state-name {
+  font-size: var(--money-font-size);
+  font-weight: 500;
+  text-align: left;
+}
+
+.players_player-state-money {
+  font-size: var(--money-font-size);
+  font-weight: 300;
+}
+
+.players_player-state {
+  display: flex;
+  justify-content: space-between;
+}
+.bank {
+  margin-bottom: 20px;
+  .players_player-state-money,.players_player-state-name {
+    font-size: 45px;
+    @include mobile() {
+      font-size: 25px;
+    }
+  }
+}
+
+.active-btn {
+  cursor: pointer;
+  :hover {
+  }
+}
+
+.mat-dialog-container {
+  background: rgb(255, 248, 225);
+  border: solid #1A62AE 10px;
+  color: black;
+}
+
+.link-button {
+  color: blue;
+
+  &:hover {
+    cursor: pointer;
+    border-bottom: solid 1px blue;
+  }
+}
+
+.mobile-heading {
+  display: none;
+}
+
+@include laptop() {
+  tr input {
+    max-width: 50px;
+    font-size: 20px;
+  }
+}
+
+@include mobile() {
+  .col-name {
+    display: none;
+  }
+  table,tr,td {
+    display: block;
+    width: calc(100% - 8px);
+  }
+
+  tr + tr {
+    margin-top: 16px;
+  }
+
+  tr input {
+    max-width: 80%;
+    font-size: 20px;
+  }
+
+  tr:hover:not(:first-child) {
+    box-shadow: none;
+  }
+
+  td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobile-heading {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    vertical-align: middle;
+    border-radius: 50px;
+  }
+
+}

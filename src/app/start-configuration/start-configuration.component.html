@@ -1,0 +1,34 @@
+<h2>Ввод имён</h2>
+<br>
+
+<form #myForm="ngForm">
+
+  <ng-container *ngFor="let player of players; index as i; trackBy: trackFn">
+    <div class="form-field">
+      <div class="input-with-icon">
+        <input
+          placeholder="Введите имя игрока {{i + 1}}"
+          required
+          name="{{i}}"
+          [(ngModel)]="players[i].name"
+          type="text"/>
+        <mat-icon class="active-btn" (click)="deletePlayer(i)">delete</mat-icon>
+      </div>
+    </div>
+  </ng-container>
+
+  <a
+    *ngIf="players.length < 6"
+    class="link-button" (click)="players.push({name: ''})">Добавить игрока</a>
+  <br>
+  <br>
+
+  <hr>
+
+  <button
+    class="active-btn"
+    [disabled]="players.length < 2 || myForm.invalid"
+    (click)="onSubmit()">
+    Начать
+  </button>
+</form>

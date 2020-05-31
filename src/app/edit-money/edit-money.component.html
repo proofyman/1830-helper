@@ -1,0 +1,27 @@
+<form #myForm="ngForm" (ngSubmit)="submit()">
+  <div class="form-field">
+    <label>Банк</label>
+    <br>
+    <input
+      name="bank"
+      [(ngModel)]="bankMoney"
+      required=""
+      type="number"/>
+  </div>
+
+  <div class="players">
+    <ng-container *ngFor="let player of state; index as i">
+      <div class="form-field">
+        <label>{{player.name}}</label>
+        <br>
+        <input
+          name="{{i}}"
+          [(ngModel)]="player.money"
+          required
+          type="number"/>
+      </div>
+    </ng-container>
+  </div>
+
+  <button [disabled]="!myForm.valid">Сохранить</button>
+</form>
